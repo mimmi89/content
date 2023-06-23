@@ -21,11 +21,12 @@
     "lint:json": "prettier -c \"**/*.json(c)?\"",
     "lint:md": "markdownlint-cli2 \"**/*.md\" && prettier -c \"**/*.md\"",
     "lint:yml": "prettier -c \"**/*.yml\"",
-    "prepare": "husky install",
+    "prepare": "yarn run snyk-protect && husky install",
     "start": "yarn up-to-date-check && env-cmd --silent cross-env CONTENT_ROOT=files REACT_APP_DISABLE_AUTH=true BUILD_OUT_ROOT=build yari-server",
     "up-to-date-check": "node scripts/up-to-date-check.js",
     "jest": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
-    "test:front-matter-linter": "yarn jest tests"
+    "test:front-matter-linter": "yarn jest tests",
+    "snyk-protect": "snyk-protect"
   },
   "dependencies": {
     "@apideck/better-ajv-errors": "^0.3.6",
@@ -45,9 +46,11 @@
     "lint-staged": "13.2.2",
     "markdownlint-cli2": "0.8.1",
     "markdownlint-rule-search-replace": "1.1.0",
-    "prettier": "2.8.8"
+    "prettier": "2.8.8",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "jest": "^29.5.0"
-  }
+  },
+  "snyk": true
 }
